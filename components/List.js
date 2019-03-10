@@ -1,12 +1,12 @@
 import React from 'react';
-import { FlatList, ActivityIndicator, Text, View , StyleSheet , Button} from 'react-native';
+import { FlatList, List, ListView, ListItem, ActivityIndicator, Text, View, StyleSheet, Button } from 'react-native';
 
 export default class FetchExample extends React.Component {
   state = {
-    isLoading:true,
+    isLoading: true,
   }
 
-  componentDidMount(){
+  componentDidMount() {
     return fetch('https://jsonplaceholder.typicode.com/users')
       .then((response) => response.json())
       .then((responseJson) => {
@@ -14,12 +14,12 @@ export default class FetchExample extends React.Component {
         this.setState({
           isLoading: false,
           dataSource: responseJson,
-        }, function(){
+        }, function () {
 
         });
 
       })
-      .catch((error) =>{
+      .catch((error) => {
         console.error(error);
       });
   }
@@ -37,48 +37,47 @@ export default class FetchExample extends React.Component {
     );
   };
 
-  render(){
+  render() {
 
-    if(this.state.isLoading){
-      return(
+    if (this.state.isLoading) {
+      return (
         <View>
-          <ActivityIndicator/>
+          <ActivityIndicator />
         </View>
       )
     }
 
-    return(
+    return (
       <View>
-        <Text
-          style={{fontSize:20,textAlign:"center",top:90}}
-        >Lista de Usuários</Text>
+        <Text style={{fontSize:20, textAlign:"center",top:80}}>Lista de Usuários</Text>
         <FlatList
           style={styles.list}
-          data={this.state.dataSource}  
-          renderItem={({item}) => 
-            <Text style={styles.item}>
+          data={this.state.dataSource}
+          renderItem={({ item }) =>
+            <Text
+              style={styles.item}>
               {item.name}{"\n"}
-              <Text>Vizualizar Posts</Text>
-            </Text>}
-          keyExtractor = { (item, index) => index.toString() }
+              <Text style={{fontSize:13}}>Vizualizar Post</Text>
+            </Text>
+          }
+          keyExtractor={(item, index) => index.toString()}
           ItemSeparatorComponent={this.renderSeparator}
         />
       </View>
     );
   }
-}
+} 
 
 const styles = StyleSheet.create({
-  item:{
+  item: {
     textAlign: "left",
-    fontSize: 20,
-    padding:16,
+    fontSize: 15,
+    padding: 16,
     fontWeight: 'bold',
-    flex:1,
-    flexDirection:"row"
-    
+    flex: 1,
+    flexDirection: "row"
   },
-  list:{
-    top:130,
+  list: {
+    top: 130
   }
 })
