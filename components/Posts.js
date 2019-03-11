@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, View, StyleSheet, FlatList,  } from "react-native";
+import {Avatar} from "react-native-elements"
 
 export default class UserPosts extends React.Component {
   state = {
@@ -27,8 +28,13 @@ export default class UserPosts extends React.Component {
   render() {
     return (
       <View>
-
         <Text style={styles.user}>{this.props.navigation.state.params.dataSource1}</Text>
+        <Avatar
+        rounded
+        icon={{name: 'user', type: 'font-awesome'}}
+        onPress={() => this.props.navigation.navigate('Users')}
+        containerStyle={{bottom:36,left:7}}
+        />
         <FlatList
           style={styles.list}
           data={this.state.prevState}
@@ -52,8 +58,8 @@ export default class UserPosts extends React.Component {
 
 const styles = StyleSheet.create({
   user: {
-    fontSize: 30,
-    marginLeft: "6%",
+    fontSize: 33,
+    marginLeft: "12%",
     marginTop: "2%",
   }
 })
