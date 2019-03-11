@@ -82,8 +82,9 @@ const styles = StyleSheet.create({
   },
   posts:{
     fontSize:16,
+    marginLeft: "7%",
   },
   list: {
-    top: 30
+    top: 20
   }
 })

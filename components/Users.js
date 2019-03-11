@@ -1,5 +1,6 @@
 import React from 'react';
-import {View , Text, StyleSheet , FlatList, Button} from "react-native"
+import {View , Text, StyleSheet , FlatList} from "react-native"
+import {Button} from "react-native-elements"
 
 export default class UserProfile extends React.Component {
   state = {
@@ -29,6 +30,13 @@ export default class UserProfile extends React.Component {
     return (
       <View>
         <Text style={styles.user}>{this.props.navigation.state.params.dataSource1}</Text>
+        <View
+        style={{
+          height: 1,
+          width: 1000,
+          backgroundColor: "#CED0CE",
+          marginLeft:"10%"
+        }}/>
         <FlatList
           style={styles.list}
           data={this.state.prevState}
@@ -51,11 +59,13 @@ export default class UserProfile extends React.Component {
           ItemSeparatorComponent={this.renderSeparator}
         />
         <Button
+        style={styles.buttons}
         title="Lista de Usuários"
         onPress= {() => this.props.navigation.navigate('List')}
         />
         <Button
         title="Ver Postagens"
+        style={styles.buttons}
         onPress= {() => this.props.navigation.navigate('Posts',{dataSource1:this.state.state1, dataSource2:this.state.state2})}
         />
       </View>
@@ -68,9 +78,16 @@ const styles = StyleSheet.create({
     marginLeft: "6%",
     marginTop: "10%",
   },
+  buttons:{
+    padding:4,
+    top:100,
+    marginLeft: "25%",
+    marginRight: "25%",
+  },
   item:{
     marginLeft:"5%",
     marginTop: "4%",
-    fontSize:17
+    fontSize:17,
+    padding:6
   }
 })

@@ -39,7 +39,7 @@ export default class UserPosts extends React.Component {
                 style={styles.item}>
                 Titulo : {item.name} {"\n"}
                 Email : {item.email} {"\n"}
-                Comments : {item.body} {"\n"}
+                Comment : {"\n"}{item.body} {"\n"}
               </Text>
             </View>
           }
@@ -60,5 +60,8 @@ const styles = StyleSheet.create({
   },
   list: {
       top:10
+  },
+  item:{
+    fontSize:20,
   }
 })

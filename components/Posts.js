@@ -35,8 +35,15 @@ export default class UserPosts extends React.Component {
         rounded
         icon={{name: 'user', type: 'font-awesome'}}
         onPress= {() => this.props.navigation.navigate('Users',{dataSource1:this.state.state1, dataSource2:this.state.state2})}
-        containerStyle={{bottom:36,left:7}}
+        containerStyle={{bottom:36,left:30}}
         />
+        <View
+        style={{
+          height: 1,
+          width: 1000,
+          backgroundColor: "#CED0CE",
+          marginLeft:"10%"
+        }}/>
         <FlatList
           style={styles.list}
           data={this.state.prevState}
@@ -45,8 +52,9 @@ export default class UserPosts extends React.Component {
               <Text
               onPress= {() => this.props.navigation.navigate('Comments',{dataSource1:this.state.state1, dataSource2:this.state.state2})}
                 style={styles.item}>
-                Titulo :{item.id} {item.title} {"\n"}
-                Post : {item.body} {"\n"}
+                POSTAGEM:{item.id} {"\n"}
+                TITULO: {item.title} {"\n"}
+                POST : {item.body} {"\n"}
               </Text>
             </View>
           }
@@ -62,7 +70,10 @@ export default class UserPosts extends React.Component {
 const styles = StyleSheet.create({
   user: {
     fontSize: 33,
-    marginLeft: "12%",
-    marginTop: "2%",
+    marginLeft: "22%",
+    marginTop: "7%",
+  },
+  item:{
+    fontSize:20,
   }
 })
