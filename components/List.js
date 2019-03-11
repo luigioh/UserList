@@ -1,5 +1,6 @@
 import React from 'react';
 import { FlatList, List, ListView, ListItem, ActivityIndicator, Text, View, StyleSheet, Button } from 'react-native';
+import ChangePageButton from "./ChangeList";
 
 export default class FetchExample extends React.Component {
   state = {
@@ -47,7 +48,7 @@ export default class FetchExample extends React.Component {
       )
     }
 
-    return (
+    return ( 
       <View>
         <Text style={{fontSize:20, textAlign:"center",top:80}}>Lista de Usuários</Text>
         <FlatList
@@ -57,7 +58,7 @@ export default class FetchExample extends React.Component {
             <Text
               style={styles.item}>
               {item.name}{"\n"}
-              <Text style={{fontSize:13}}>Vizualizar Post</Text>
+              <ChangePageButton/>
             </Text>
           }
           keyExtractor={(item, index) => index.toString()}
@@ -66,7 +67,8 @@ export default class FetchExample extends React.Component {
       </View>
     );
   }
-} 
+}
+
 
 const styles = StyleSheet.create({
   item: {
