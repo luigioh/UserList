@@ -57,7 +57,7 @@ export default class FetchExample extends React.Component {
           <View>
             <Text
             style = {styles.item}
-            onPress= {() => this.props.navigation.navigate('Users')}>
+            onPress= {() => this.props.navigation.navigate('Users',{dataSource1:item.name, dataSource2:item.id})}>
               {item.name}
             </Text>
             <Text

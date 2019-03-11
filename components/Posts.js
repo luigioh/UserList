@@ -32,7 +32,7 @@ export default class UserPosts extends React.Component {
         <Avatar
         rounded
         icon={{name: 'user', type: 'font-awesome'}}
-        onPress={() => this.props.navigation.navigate('Users')}
+        onPress= {() => this.props.navigation.navigate('Users',{dataSource1:this.props.navigation.state.params.dataSource1, dataSource2:this.props.navigation.state.params.dataSource1})}
         containerStyle={{bottom:36,left:7}}
         />
         <FlatList
