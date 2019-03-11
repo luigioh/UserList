@@ -1,6 +1,5 @@
 import React from "react";
 import { Text, View, StyleSheet, FlatList,  } from "react-native";
-import {Avatar} from "react-native-elements"
 
 export default class UserPosts extends React.Component {
   state = {
@@ -10,13 +9,13 @@ export default class UserPosts extends React.Component {
     state2:[this.props.navigation.state.params.dataSource2]
   }
   componentDidMount() {
-    return fetch('https://jsonplaceholder.typicode.com/posts')
+    return fetch('https://jsonplaceholder.typicode.com/comments')
       .then((response) => response.json())
       .then((responseJson) => {
 
         this.setState({
           isLoading: false,
-          prevState: responseJson.filter(x => x.userId == [this.props.navigation.state.params.dataSource2]),
+          prevState: responseJson.filter(x => x.postId == [this.props.navigation.state.params.dataSource2]),
         }, function () {
 
         });
@@ -30,23 +29,17 @@ export default class UserPosts extends React.Component {
   render() {
     return (
       <View>
-        <Text style={styles.user}>{this.props.navigation.state.params.dataSource1}</Text>
-        <Avatar
-        rounded
-        icon={{name: 'user', type: 'font-awesome'}}
-        onPress= {() => this.props.navigation.navigate('Users',{dataSource1:this.state.state1, dataSource2:this.state.state2})}
-        containerStyle={{bottom:36,left:7}}
-        />
+        <Text style={styles.user}>COMENTÁRIOS</Text>
         <FlatList
           style={styles.list}
           data={this.state.prevState}
           renderItem={({ item }) =>
             <View>
               <Text
-              onPress= {() => this.props.navigation.navigate('Comments',{dataSource1:this.state.state1, dataSource2:this.state.state2})}
                 style={styles.item}>
-                Titulo :{item.id} {item.title} {"\n"}
-                Post : {item.body} {"\n"}
+                Titulo : {item.name} {"\n"}
+                Email : {item.email} {"\n"}
+                Comments : {item.body} {"\n"}
               </Text>
             </View>
           }
@@ -62,7 +55,10 @@ export default class UserPosts extends React.Component {
 const styles = StyleSheet.create({
   user: {
     fontSize: 33,
-    marginLeft: "12%",
     marginTop: "2%",
+    textAlign:"center"
+  },
+  list: {
+      top:10
   }
 })
