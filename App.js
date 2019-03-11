@@ -13,7 +13,7 @@ export default class App extends React.Component {
 };
 
 const AppNavigator = createStackNavigator({
-  ListofUsers: {screen:FetchExample},
+  List: {screen:FetchExample},
   Users:{screen:UserProfile},
   Posts:{screen:UserPost}
 })

@@ -5,7 +5,9 @@ import {Avatar} from "react-native-elements"
 export default class UserPosts extends React.Component {
   state = {
     isLoading: true,
-    prevState: []
+    prevState: [],
+    state1:[this.props.navigation.state.params.dataSource1],
+    state2:[this.props.navigation.state.params.dataSource2]
   }
   componentDidMount() {
     return fetch('https://jsonplaceholder.typicode.com/posts')
@@ -32,7 +34,7 @@ export default class UserPosts extends React.Component {
         <Avatar
         rounded
         icon={{name: 'user', type: 'font-awesome'}}
-        onPress= {() => this.props.navigation.navigate('Users',{dataSource1:this.props.navigation.state.params.dataSource1, dataSource2:this.props.navigation.state.params.dataSource1})}
+        onPress= {() => this.props.navigation.navigate('Users',{dataSource1:this.state.state1, dataSource2:this.state.state2})}
         containerStyle={{bottom:36,left:7}}
         />
         <FlatList

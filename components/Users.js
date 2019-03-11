@@ -4,6 +4,8 @@ import {View , Text, StyleSheet , FlatList, Button} from "react-native"
 export default class UserProfile extends React.Component {
   state = {
     isLoading: true,
+    state1:[this.props.navigation.state.params.dataSource1],
+    state2:[this.props.navigation.state.params.dataSource2]
   }
   componentDidMount() {
     return fetch('https://jsonplaceholder.typicode.com/users')
@@ -47,6 +49,14 @@ export default class UserProfile extends React.Component {
           }
           keyExtractor={(item, index) => index.toString()}
           ItemSeparatorComponent={this.renderSeparator}
+        />
+        <Button
+        title="Lista de Usuários"
+        onPress= {() => this.props.navigation.navigate('List')}
+        />
+        <Button
+        title="Ver Postagens"
+        onPress= {() => this.props.navigation.navigate('Posts',{dataSource1:this.state.state1, dataSource2:this.state.state2})}
         />
       </View>
     );
