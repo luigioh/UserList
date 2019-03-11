@@ -1,10 +1,9 @@
 import React from 'react';
-import { FlatList, List, ListView, ListItem, ActivityIndicator, Text, View, StyleSheet, Button } from 'react-native';
-import ChangePageButton from "./ChangeList";
+import { FlatList, List, ListView, ListItem, TouchableOpacity, ActivityIndicator, Text, View, StyleSheet, Button } from 'react-native';
 
 export default class FetchExample extends React.Component {
   state = {
-    isLoading: true,
+    isLoading: true
   }
 
   componentDidMount() {
@@ -30,9 +29,9 @@ export default class FetchExample extends React.Component {
       <View
         style={{
           height: 1,
-          width: "86%",
+          width: 1000,
           backgroundColor: "#CED0CE",
-          marginLeft: "14%"
+          marginLeft:"10%"
         }}
       />
     );
@@ -48,18 +47,25 @@ export default class FetchExample extends React.Component {
       )
     }
 
-    return ( 
+    return (
       <View>
-        <Text style={{fontSize:20, textAlign:"center",top:80}}>Lista de Usuários</Text>
+        <Text style={{ fontSize: 20, textAlign: "center", top: 10 }}>Lista de Usuários</Text>
         <FlatList
           style={styles.list}
           data={this.state.dataSource}
           renderItem={({ item }) =>
+          <View>
             <Text
-              style={styles.item}>
-              {item.name}{"\n"}
-              <ChangePageButton/>
+            style = {styles.item}
+            onPress= {() => this.props.navigation.navigate('Users')}>
+              {item.name}
             </Text>
+            <Text
+            style = {styles.posts}
+            onPress= {() => this.props.navigation.navigate('Posts',{dataSource:item.name})}>
+              Vizualizar Posts
+            </Text>
+          </View>
           }
           keyExtractor={(item, index) => index.toString()}
           ItemSeparatorComponent={this.renderSeparator}
@@ -68,18 +74,16 @@ export default class FetchExample extends React.Component {
     );
   }
 }
-
-
 const styles = StyleSheet.create({
   item: {
-    textAlign: "left",
-    fontSize: 15,
     padding: 16,
+    fontSize:20,
     fontWeight: 'bold',
-    flex: 1,
-    flexDirection: "row"
+  },
+  posts:{
+    fontSize:16,
   },
   list: {
-    top: 130
+    top: 30
   }
 })
